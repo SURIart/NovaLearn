@@ -296,7 +296,7 @@ async function processStream(userId, curriculum) {
 
     console.log("🎉 inserting roadmap Completed!");
 
-    await InsertCurriculum(userId, curriculumTitle, CurriculumDescription, EstimatedDurations, lessonIds,roadmap);
+    await InsertCurriculum(userId, curriculum, CurriculumDescription, EstimatedDurations, lessonIds,roadmap);
     return {
       'Msg': 'Curriculum added successfully'
     }
@@ -506,17 +506,17 @@ async function getUserLessonWithDetails(userId, lessonId) {
     NotesIds: userLesson?.NotesIds ?? null,
 
     // 🟢 AllLessons attributes
-    Title: lessonDetail?.title ?? null,
+    title: lessonDetail?.title ?? null,
     Description: lessonDetail?.Description ?? null,
     Subject: lessonDetail?.subject ?? null,
     LessonContent: lessonDetail?.LessonContent ?? userLesson?.LessonContent ?? null,
     ExternalResources: lessonDetail?.ExternalResources ?? userLesson?.ExternalResources ?? null,
     Applications: lessonDetail?.Applications ?? null,
     Keywords: lessonDetail?.Keywords ?? userLesson?.Keywords ?? null,
-    Prerequisites: lessonDetail?.prequisites ?? null,
-    NextLessons: lessonDetail?.Next_Lesson ?? null,
+    prequisites: lessonDetail?.prequisites ?? null,
+    Next_Lesson: lessonDetail?.Next_Lesson ?? null,
     CreatedAt: lessonDetail?.CreatedAt ?? null,
-    DifficultyLevel: lessonDetail?.DifficultyLevel ?? userLesson?.DifficultyLevel ?? null
+    Difficulty: lessonDetail?.DifficultyLevel ?? userLesson?.DifficultyLevel ?? null
   };
 }
 
@@ -545,7 +545,7 @@ async function getUnEnrollLessons(lessonId) {
     }
 
     console.log("User Lesson Data:", result.Items[0]);
-    return result.Items;
+    return result.Items[0];
   } catch (error) {
     console.error("Error fetching user lesson:", error);
     return error;
