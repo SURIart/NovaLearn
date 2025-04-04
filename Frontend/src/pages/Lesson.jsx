@@ -4,6 +4,7 @@ import '../styles/Lesson.css';
 
 import { GET_CURRICULUM_URL } from '../api';
 import {GET_USER_ENROLL_LESSONS_URL} from '../api';
+import {GET_USER_UN_ENROLL_COURSES_URL} from '../api';
 const Lesson = () => {
   const { courseId, lessonId } = useParams();
   const navigate = useNavigate();
@@ -51,12 +52,37 @@ const Lesson = () => {
           }
 
           const data = await response.json();
-          console.log('Lesson API Response:', data);
+          console.log('get user lessons  API Response:');
+          console.log(data);
+          console.log(course);
 
-          setLessonContent({
-            title: lessonName,
-            ...data
-          });
+          if(data !== null){
+            setLessonContent({
+              title: lessonName,
+              ...data
+            });
+          }else{
+            console.log("lesson id"+lessonId)
+            const response = await fetch(GET_USER_UN_ENROLL_COURSES_URL, { 
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                LessonId: lessonId  
+
+              })
+            });
+            const data = await response.json();
+            console.log('get user un enroll courses API Response:');
+            setLessonContent({
+              title: lessonName,
+              ...data
+            });
+            console.log(data);
+          }
+          console.log(' lesson content:');
+
         }
       } catch (err) {
         setError(err.message);
@@ -170,7 +196,7 @@ const Lesson = () => {
         <div className="lesson-section">
           <h2>Prerequisites</h2>
           <ul>
-            {lessonContent.Prerequisites.map((prereq, index) => (
+            {lessonContent.prequisites.map((prereq, index) => (
               <li key={index}>{prereq}</li>
             ))}
           </ul>
@@ -179,7 +205,7 @@ const Lesson = () => {
         <div className="lesson-section">
           <h2>Next Lessons</h2>
           <ul>
-            {lessonContent.NextLessons.map((next, index) => (
+            {lessonContent.Next_Lesson.map((next, index) => (
               <li key={index}>{next}</li>
             ))}
           </ul>
@@ -187,7 +213,7 @@ const Lesson = () => {
 
         <div className="lesson-section">
           <h2>Difficulty Level</h2>
-          <p className="difficulty">{lessonContent.DifficultyLevel}</p>
+          <p className="difficulty">{lessonContent.Difficulty}</p>
         </div>
       </div>
     </div>
