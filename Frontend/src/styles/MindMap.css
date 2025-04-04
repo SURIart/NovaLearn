@@ -1,0 +1,132 @@
+.mindmap-page {
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f8fafc;
+}
+
+.mindmap-container {
+  width: 100%;
+  height: calc(100vh - 100px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+}
+
+.mindmap-container h1 {
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 24px;
+}
+
+.mindmap-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mindmap-content {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.node {
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  min-width: 100px;
+  position: relative;
+}
+
+.node-content {
+  padding: 8px;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-concept {
+  background: #4a90e2;
+  color: black;
+}
+
+.sub-concept {
+  background: #50e3c2;
+  color: #333;
+}
+
+.detail {
+  background: #f5a623;
+  color: black;
+}
+
+/* ReactFlow styles */
+.react-flow__node {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.react-flow__node.main-concept {
+  background-color: #e2e8f0;
+  border-color: #1e293b;
+  font-weight: bold;
+}
+
+.react-flow__node.sub-concept {
+  background-color: #f1f5f9;
+  border-color: #475569;
+}
+
+.react-flow__node.detail {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background-color: #64748b;
+  border: 2px solid white;
+}
+
+.react-flow__edge-path {
+  stroke: #94a3b8;
+  stroke-width: 2;
+}
+
+.react-flow__controls {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.react-flow__controls-button {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  color: #64748b;
+}
+
+.react-flow__controls-button:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+/* Ensure the ReactFlow container takes full width and height */
+.react-flow {
+  width: 100%;
+  height: 100%;
+}
+
+.react-flow__viewport {
+  width: 100%;
+  height: 100%;
+} 
