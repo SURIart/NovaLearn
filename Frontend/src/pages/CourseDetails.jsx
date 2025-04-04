@@ -60,8 +60,8 @@ const CourseDetails = () => {
       if (!response.ok) return;
 
       const data = await response.json();
-      console.log("in course details"+data.PathId);
-      const isAdded = data.some(item => item.PathId === pathId);
+      console.log("in course details"+data[0].PathId);
+      const isAdded = data.Items.some(item => item.PathId === pathId);
       setIsAlreadyAdded(isAdded);
     } catch (err) {
       console.error('Error checking course status:', err);
@@ -77,9 +77,8 @@ const CourseDetails = () => {
       if (!userData || !userData.UserId) {
         throw new Error('User not logged in');
       }
-      console.log("UserId:",userData.UserId)
 
-      const response = await fetch( SET_USER_CURRICULUM_URL, {
+      const response = await fetch(SET_USER_CURRICULUM_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

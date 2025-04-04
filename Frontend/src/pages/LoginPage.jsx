@@ -58,7 +58,7 @@ const LoginPage = () => {
         }));
 
         console.log(localStorage.getItem('user'))
-        window.location.href = '/dashboard'; // Force a full page reload
+        window.location.href = '/all-lessons'; // Force a full page reload
       } else {
         setError(data.Msg || 'Login failed');
       }

@@ -97,28 +97,25 @@ const RoadMapPage = () => {
           animated: true
         }));
 
-        // Calculate positions in a hierarchical layout
+        // Hierarchical layout calculation
         const centerX = 400;
         const centerY = 300;
-        const mainConceptNodes = transformedNodes.filter(n => n.type === 'MainConcept');
+        const horizontalSpacing = 500;
+        const verticalSpacing = 400;
         
+        // Find main concept nodes
+        const mainConceptNodes = transformedNodes.filter(n => n.type === 'MainConcept');
         if (mainConceptNodes.length > 0) {
-          // Position main concepts in a circle
-          const mainConceptRadius = 250;
-          const mainConceptAngle = (2 * Math.PI) / mainConceptNodes.length;
-          
+          // Position main concepts in a vertical line
           mainConceptNodes.forEach((node, index) => {
-            const angle = index * mainConceptAngle;
             node.position = {
-              x: centerX + mainConceptRadius * Math.cos(angle),
-              y: centerY + mainConceptRadius * Math.sin(angle)
+              x: centerX,
+              y: centerY + (index * verticalSpacing)
             };
           });
           
-          // Position sub-concepts around their parent main concepts
+          // Position sub-concepts
           const subConcepts = transformedNodes.filter(n => n.type === 'SubConcept');
-          const subConceptRadius = 150;
-          
           subConcepts.forEach((node) => {
             const parentEdge = transformedEdges.find(e => e.target === node.id);
             if (parentEdge) {
@@ -131,20 +128,19 @@ const RoadMapPage = () => {
                 });
                 
                 const siblingIndex = siblingSubConcepts.findIndex(s => s.id === node.id);
-                const angle = (siblingIndex * (2 * Math.PI)) / siblingSubConcepts.length;
+                const isLeft = siblingIndex % 2 === 0;
+                const row = Math.floor(siblingIndex / 2);
                 
                 node.position = {
-                  x: parentNode.position.x + subConceptRadius * Math.cos(angle),
-                  y: parentNode.position.y + subConceptRadius * Math.sin(angle)
+                  x: parentNode.position.x + (isLeft ? -horizontalSpacing : horizontalSpacing),
+                  y: parentNode.position.y + (row * verticalSpacing/2)
                 };
               }
             }
           });
 
-          // Position details around their parent sub-concepts
+          // Position details
           const details = transformedNodes.filter(n => n.type === 'Detail');
-          const detailRadius = 100;
-          
           details.forEach((node) => {
             const parentEdge = transformedEdges.find(e => e.target === node.id);
             if (parentEdge) {
@@ -157,11 +153,12 @@ const RoadMapPage = () => {
                 });
                 
                 const siblingIndex = siblingDetails.findIndex(d => d.id === node.id);
-                const angle = (siblingIndex * (2 * Math.PI)) / siblingDetails.length;
+                const isLeft = siblingIndex % 2 === 0;
+                const row = Math.floor(siblingIndex / 2);
                 
                 node.position = {
-                  x: parentNode.position.x + detailRadius * Math.cos(angle),
-                  y: parentNode.position.y + detailRadius * Math.sin(angle)
+                  x: parentNode.position.x + (isLeft ? -horizontalSpacing/2 : horizontalSpacing/2),
+                  y: parentNode.position.y + (row * verticalSpacing/2)
                 };
               }
             }
