@@ -35,3 +35,6 @@ export const SAVE_WHITEBOARD_URL = "http://192.168.36.156:9000/storeWhiteBoard";
 export const GENERATE_WHITEBOARD_URL = "http://192.168.36.156:9000/generateWhiteBoard"; // generate whiteboard
 
 export const GET_ROADMAP_URL = "http://192.168.36.156:9000/getRoadmap"; // get roadmap
+
+export const GET_USER_UN_ENROLL_COURSES_URL = "http://192.168.36.156:9000/getUnEnrollLessons"; // get user enrolled courses
+
