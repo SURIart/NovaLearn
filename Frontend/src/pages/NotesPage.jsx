@@ -129,7 +129,7 @@ const NotesPage = () => {
         lessonId: lessonId,
         Subject: lessonContent.Subject,
         LessonContent: lessonData.document_url,
-        title: lessonContent.Title,
+        title: lessonContent.title,
         Email: userEmail,
         UserPreference: selectedPreferences
       };

@@ -11,6 +11,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import '../styles/Lesson.css';
 
+import { GET_CURRICULUM_URL } from '../api';
 import { GET_MIND_MAP_URL } from '../api';
 
 const nodeTypes = {
@@ -68,6 +69,18 @@ const MindMapPage = () => {
         const userData = JSON.parse(localStorage.getItem('user'));
         const userId = userData?.UserId;
 
+        // Fetch course data to get lesson name
+        const courseResponse = await fetch(GET_CURRICULUM_URL);
+        if (!courseResponse.ok) {
+          throw new Error('Failed to fetch course details');
+        }
+        const courseData = await courseResponse.json();
+        const course = courseData.Items.find(item => item.PathId === courseId);
+        
+        if (course) {
+          const lesson = course.Lessons.find(l => l.LessonId === lessonId);
+          const lessonName = lesson?.LessonName || 'Unknown Lesson';
+
         const response = await fetch(GET_MIND_MAP_URL, {
           method: 'POST',
           headers: { 
@@ -76,7 +89,7 @@ const MindMapPage = () => {
           body: JSON.stringify({
             userId: userId,
             lessonId: lessonId,
-            subject: 'Lesson Content'
+            subject: lessonName 
           })
         });
 
@@ -152,6 +165,7 @@ const MindMapPage = () => {
 
         setNodes(transformedNodes);
         setEdges(transformedEdges);
+      }
       } catch (err) {
         setError(err.message);
       } finally {

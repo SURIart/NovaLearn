@@ -1,7 +1,7 @@
 from Readability import Readability
 from mistralai import Mistral
 from SematicAnalysis import semantic_coherence_score
-from fastapi import FastAPI,Query,HTTPException
+from fastapi import HTTPException
 import cloudinary
 import cloudinary.uploader
 import uuid
@@ -19,7 +19,7 @@ class InputModel(BaseModel):
     user_preference: List[str]
     url:str
 
-app=FastAPI()
+
 
 api_key = "aZIvJpgXJMBAY5ypKXnVx1A4eqBaYDwM"
 model = "open-mixtral-8x22b"
@@ -121,7 +121,7 @@ def text_refine(topic:str,subject:str,Oreadscore:float,Osemanticscore:float,Rrea
 
 
 
-@app.post("/PersonalizeNotes/")
+
 async def Personalization(request:InputModel):
 
     response = requests.get(request.url)

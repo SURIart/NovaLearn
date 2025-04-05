@@ -60,8 +60,12 @@ const CourseDetails = () => {
       if (!response.ok) return;
 
       const data = await response.json();
-      console.log("in course details"+data[0].PathId);
-      const isAdded = data.Items.some(item => item.PathId === pathId);
+      console.log("in course details user enrolled courses");
+      console.log(data);
+      console.log(data.Items);
+      // console.log("in course details"+data[0].PathId);
+      const isAdded = data.some(item => String(item.PathId) === String(pathId));
+      console.log("is added"+isAdded);
       setIsAlreadyAdded(isAdded);
     } catch (err) {
       console.error('Error checking course status:', err);

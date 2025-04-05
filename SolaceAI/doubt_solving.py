@@ -1,9 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import  HTTPException
 from pydantic import BaseModel
 from mistralai import Mistral
 from typing import List, Dict
 
-app = FastAPI()
 
 # Replace with your actual OpenRouter API key
 MISTRAL_API_KEY = "aZIvJpgXJMBAY5ypKXnVx1A4eqBaYDwM"
@@ -16,8 +15,8 @@ class ChatRequest(BaseModel):
     topic: str
     conversation: List[Dict[str, str]]  # List of messages (role: user/assistant, content)
 
-@app.post("/chat")
-def chat_with_ai(request: ChatRequest):
+
+def chat_ai(request: ChatRequest):
     """
     This endpoint receives a topic and a conversation history, then fetches an AI response
     while ensuring the query remains within the given topic.

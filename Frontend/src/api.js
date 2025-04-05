@@ -26,7 +26,7 @@ export const GET_DOUBT_DETAILS_URL = "http://192.168.36.156:9000/fetch-doubt-det
 
 export const SAVE_DOUBT_URL = "http://192.168.36.156:9000/save-doubt"; // save doubt
 
-export const GET_DOUBT_SOLVING_URL = "http://192.168.36.156:9000/get-doubt-solving"; // get doubt solving
+export const GET_DOUBT_SOLVING_URL = "http://192.168.36.156:9000/ask-ai"; // get doubt solving
 
 export const GET_SAVED_WHITEBOARDS_URL = "http://192.168.36.156:9000/fetch-whiteboard-details"; // get saved whiteboards
 

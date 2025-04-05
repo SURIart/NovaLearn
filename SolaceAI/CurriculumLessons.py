@@ -1,7 +1,5 @@
 from LessonGen import get_lessons
 from CurriculumGen import get_Curriculum
-from fastapi import FastAPI, Query
-from fastapi.responses import StreamingResponse
 import json
 import asyncio
 
@@ -40,10 +38,6 @@ class LessonData:
 
         return lesson_generator()
 
-lesson_data = LessonData()
-app = FastAPI()
 
-@app.get("/get_allLessons")
-async def send_lessons(curriculum: str = Query(..., description="Enter The curriculum to Generate the lessons")):
-    await lesson_data.get_Lessons(curriculum)
-    return StreamingResponse(await lesson_data.get_lesson_details(), media_type="application/json")
+
+

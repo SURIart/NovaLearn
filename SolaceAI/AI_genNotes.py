@@ -1,28 +1,12 @@
 import os
-from fastapi import FastAPI, HTTPException,Query
 import cloudinary
 import cloudinary.uploader
 import uuid
 
-from mistralai import Mistral
-
-# FastAPI App
-app = FastAPI()
 
 
-mistral_api_key = "Vjlsaze8UNqSr0CXYwIw7Ccu8mRlwQvV"
 
-MistralClient = Mistral(api_key=mistral_api_key)
-
-# Cloudinary Configuration
-cloudinary.config( 
-    cloud_name = "dfm9b5jpx", 
-    api_key = "732623928637278", 
-    api_secret = "_tgjISFg6oR452QY8Lda_YcVwLw", # Click 'View API Keys' above to copy your API secret
-    secure=True
-)
-
-def generate_notes(topic,subject):
+def generate_notes(MistralClient,topic,subject):
     System_prompt = """Your a professional educational note content creator of any domain.  
 The notes should be informative, structured, and **comprehensive**, ensuring that the reader gains a **complete understanding** of the topic.  
 The over all notes should be of 2000-2500 words.
@@ -37,21 +21,21 @@ The over all notes should be of 2000-2500 words.
 
     {Topic}
 
-## 1. Introduction  
+## 2. Introduction  
  
-## 2. Definition  
+## 3. Definition  
 
-## 3. Detailed Explanation  
+## 4. Detailed Explanation  
 
-## 4. Simplified Understanding  
+## 5. Simplified Understanding  
  
-## 5. Examples  
+## 6. Examples  
 
-## 6. Analogy  
+## 7. Analogy  
  
-## 7. Formulas (If Applicable)  
+## 8. Formulas (If Applicable)  
 
-## 8. Subtopics  
+## 10. Subtopics  
 
 ### [Subtopic Name]  
 #### Introduction  
@@ -64,9 +48,9 @@ The over all notes should be of 2000-2500 words.
 
 #### Formulas (If Any)  
 
-## 9. Summary  
+## 11. Summary  
 
-## 10. Additional Notes (Optional)  
+## 12. Additional Notes (Optional)  
 
 """
     user_prompt=f"Generate detailed, well-structured, and in-depth notes on the topic: {topic} under the subject{subject}."
@@ -98,25 +82,16 @@ def create_txt(content):
 
 # Function to upload DOCX to Cloudinary
 def upload_to_cloudinary(file_path):
+    # Cloudinary Configuration
+    cloudinary.config( 
+        cloud_name = "dfm9b5jpx", 
+        api_key = "732623928637278", 
+        api_secret = "_tgjISFg6oR452QY8Lda_YcVwLw", # Click 'View API Keys' above to copy your API secret
+        secure=True
+    )
     upload_result = cloudinary.uploader.upload(file_path, resource_type="raw")
     os.remove(file_path)
     return upload_result.get("secure_url")
 
 
 # API Endpoint
-@app.post("/notes/")
-def generate_document(topic: str=Query(...),subject:str=Query(...)):
-    try:
-        # Generate text
-        content = generate_notes(topic,subject)
-        
-        # Create TXT file
-        file_path = create_txt(content)
-        
-        # Upload DOCX to Cloudinary
-        doc_url = upload_to_cloudinary(file_path)
-        
-        return {"document_url": doc_url}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
