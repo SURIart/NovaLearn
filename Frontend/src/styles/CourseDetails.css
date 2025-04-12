@@ -2,14 +2,19 @@
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  /* background-color: #E9A5F1; */
 }
 
 .course-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
   padding: 2rem;
-  background: #fff;
-  color: #333;
+  border-radius: 10px;
+
+  
+  color: white;
+  border: 1px solid #8F87F1;
+  background-color: #1e293b;
 }
 
 .course-header h1 {
@@ -18,6 +23,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: #8F87F1;
 }
 
 .course-meta {
@@ -26,7 +32,7 @@
   gap: 2rem;
   margin-bottom: 2rem;
   font-size: 1.2rem;
-  color: #666;
+  color: white;
 }
 
 .course-description {
@@ -34,7 +40,7 @@
   padding: 1rem 0;
   font-size: 1.3rem;
   line-height: 1.8;
-  color: #444;
+  color: white;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -49,16 +55,23 @@
 
 .lessons-list h2 {
   margin-bottom: 2rem;
-  color: #333;
+  color: #8F87F1;
   font-size: 2rem;
   text-align: center;
 }
 
 .lessons-grid {
+  border-radius: 10px;
+  /* border: 1px solid #1e293b; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  
+  /* background-color: #1e293b; */
+  padding: 3em;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  padding: 1rem;
+  /* padding: 1rem; */
+  margin-left: 0;
 }
 
 .lesson-card {
@@ -76,32 +89,45 @@
 }
 
 .lesson-card:nth-child(4n+1) {
-  background: #FFE4E1;  /* Misty Rose */
+  background: #FFE6A9;  /* Purple-blue */
+  color: #444;
 }
 
 .lesson-card:nth-child(4n+2) {
-  background: #E0FFFF;  /* Light Cyan */
+  background: #FFE6A9;  /* Light purple */
+  color: #444;
 }
 
 .lesson-card:nth-child(4n+3) {
-  background: #F0FFF0;  /* Honeydew */
+  background: #FFE6A9;  /* Pink-purple */
+  color: #444;
 }
 
 .lesson-card:nth-child(4n+4) {
-  background: #FFF0F5;  /* Lavender Blush */
+  background: #FFE6A9;  /* Light pink */
+  color: #444;
 }
 
 .lesson-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   filter: brightness(1.05);
 }
 
 .lesson-card h3 {
   margin: 0;
-  color: #495057;
   font-size: 1rem;
   line-height: 1.4;
+}
+
+.lesson-card:nth-child(4n+1) h3,
+.lesson-card:nth-child(4n+2) h3,
+.lesson-card:nth-child(4n+3) h3 {
+  color: #495057;
+}
+
+.lesson-card:nth-child(4n+4) h3 {
+  color: #495057;
 }
 
 .loading, .error {
@@ -115,43 +141,47 @@
   color: #dc3545;
 }
 
+.lessons-list > h2{
+  color: #1e293b;
+}
+
 .add-course-btn {
-  background-color: #2563eb;
-  color: white;
+  background-color: #FFE6A9;
+  color: #1e293b;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 800;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 1.5rem;
 }
 
 .add-course-btn:hover {
-  background-color: #1d4ed8;
+  background-color: #7A74DC;
   transform: translateY(-1px);
 }
 
 .add-course-btn:disabled {
-  background-color: #93c5fd;
+  background-color: #C2BDF7;
   cursor: not-allowed;
   transform: none;
 }
 
 .add-course-btn.already-added {
-  background-color: #10b981;
+  background-color: #FFE6A9;
   cursor: default;
 }
 
 .add-course-btn.already-added:hover {
-  background-color: #10b981;
+  background-color: #E9A5F1;
   transform: none;
 }
 
 .error-message {
   color: #dc2626;
-  background-color: #fee2e2;
+  background-color: #FED2E2;
   padding: 0.75rem;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -185,8 +215,9 @@
 }
 
 .roadmap-button {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #FFE6A9;
+  color: #1e293b;
+  /* color: white; */
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -201,7 +232,7 @@
 }
 
 .roadmap-button:hover {
-  background-color: #45a049;
+  background-color: #B37FEB;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -209,4 +240,4 @@
 .roadmap-button:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} 
+}

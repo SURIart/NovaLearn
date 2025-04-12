@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/App.css";
 import { GET_USER_CURRICULUM_URL } from '../api';
+import icon from "./brain.png" 
+
 
 const UserLessons = () => {
   const navigate = useNavigate();
@@ -74,15 +76,13 @@ const UserLessons = () => {
               className="course-tile"
               onClick={() => handleCourseClick(course.PathId)}
             >
-              <img
-                src={`https://placehold.co/600x400/007bff/white?text=${course.Title}`}
-                alt={course.Title}
-                className="course-image"
-              />
+              <div className='image-icon-div'>
+                          <img src={icon} alt="Brain " width="50" height="50"/>
+              </div>
               <div className="course-content">
                 <h2 className="course-title">{course.Title}</h2>
                 <div className="course-meta">
-                  <span>⏱ {course.EstimatedDurations} hours</span>
+                  {/* <span>⏱ {course.EstimatedDurations} hours</span> */}
                   <span>📚 {course.Lessons.length} lessons</span>
                 </div>
               </div>
