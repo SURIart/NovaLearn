@@ -138,7 +138,7 @@ const CourseDetails = () => {
         )}
         {addError && <div className="error-message">{addError}</div>}
         <div className="course-meta">
-          <span>⏱ {course.EstimatedDurations} hours</span>
+          {/* {<span>⏱ {course.EstimatedDurations} hours</span>} */}
           <span>📚 {course.Lessons.length} lessons</span>
         </div>
         <div className="course-description">

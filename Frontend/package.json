@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tldraw/tldraw": "^3.11.0",
+    "all": "^0.0.0",
     "axios": "^1.8.4",
     "dagre": "^0.8.5",
     "html2canvas": "^1.4.1",
@@ -19,6 +20,7 @@
     "react-flow": "^1.0.3",
     "react-markdown": "^10.1.0",
     "react-router": "^7.3.0",
+    "react-router-dom": "^7.5.0",
     "reactflow": "^11.11.4",
     "tesseract.js": "^6.0.0",
     "tldraw": "^3.10.1"
